@@ -1,16 +1,5 @@
-STTV - Svelte / Typescript / Tailwind / Vite Template
+Svelte Books Searcher
 =====================================================
-
-Get up and running with Svelte, Typescript, Tailwind and Vite. Also includes testing setup using Jest.
-
-Installation
-------------
-
-```
-npx degit "srmullen/sttv#main" my_app
-cd my_app
-npm install
-```
 
 Scripts
 -------
