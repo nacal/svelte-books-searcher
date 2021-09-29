@@ -6,8 +6,8 @@
 </script>
 
 <Tailwind />
-<Header />
 <Router>
+  <Header />
   <main class="text-center p-16 mx-0">
     <Route path="" component={Home} />
     <Route path="search-books" component={SearchBooks} />
