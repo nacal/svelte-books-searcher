@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Link } from "svelte-routing";
-  import SearchBar from "/@components/SearchBar.svelte";
+  import { SearchBar, Spinner } from "/@components";
   import type { BookItem, Result } from "/@repositories/book";
   import RepositoryFactory, { BOOK } from "/@repositories/RepositoryFactory";
   const BookRepository = RepositoryFactory[BOOK];
@@ -39,7 +39,9 @@
     {/each}
   {/if}
   {#await promise}
-    <div>loading...</div>
+    <div class="flex justify-center">
+      <Spinner />
+    </div>
   {:catch e}
     <span class="text-red-600 text-sm">
       {e.message}
