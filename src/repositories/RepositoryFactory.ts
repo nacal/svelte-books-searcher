@@ -1,4 +1,5 @@
-import { BookRepository, BookRepositoryInterface } from './book'
+import { BookRepository } from './book'
+import type { BookRepositoryInterface } from './book'
 
 export const BOOK = Symbol('book')
 
