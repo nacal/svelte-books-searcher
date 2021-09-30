@@ -8,7 +8,7 @@
 <Tailwind />
 <Router>
   <Header />
-  <main class="text-center p-16 mx-0">
+  <main class="text-center py-8 m-16">
     <Route path="" component={Home} />
     <Route path="search-books" component={SearchBooks} />
   </main>

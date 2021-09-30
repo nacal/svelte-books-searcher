@@ -46,7 +46,6 @@
   };
 </script>
 
-<h1>Search Books</h1>
 <form on:submit|preventDefault={handleSubmit}>
   <SearchBar bind:value={q} />
 </form>
@@ -60,7 +59,7 @@
         <BookCard {book} />
       {/each}
     </div>
-    <InfiniteScroll window on:loadMore={handleLoadMore} />
+    <InfiniteScroll window on:loadMore={handleLoadMore} {hasMore} />
   {/if}
   {#await promise}
     <div class="flex justify-center">
