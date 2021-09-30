@@ -10,5 +10,6 @@ export default defineConfig({
     '/@assets/': path.join(__dirname, '/src/assets/'),
     '/@components/': path.join(__dirname, '/src/components/'),
     '/@store/': path.join(__dirname, '/src/store/'),
+    '/@repositories/': path.join(__dirname, '/src/repositories/'),
   }
 });
