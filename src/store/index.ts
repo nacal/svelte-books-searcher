@@ -1,3 +1,17 @@
-import { writable } from 'svelte/store';
+import { writable } from 'svelte/store'
+import type { BookItem } from '../repositories/book'
 
-export const count = writable(0);
+const useBookStore = () => {
+  const { subscribe, set, update } = writable<BookItem[]>([])
+  const reset = () => set([])
+  const add = (newBooks: BookItem[]) => update((books: BookItem[]) => {
+    return [...books, ...newBooks]
+  })
+  return {
+    subscribe,
+    reset,
+    add
+  }
+}
+
+export const books = useBookStore()

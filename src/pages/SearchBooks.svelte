@@ -1,19 +1,18 @@
 <script lang="ts">
-  import { Link } from "svelte-routing";
   import InfiniteScroll from "svelte-infinite-scroll";
   import { SearchBar, Spinner, BookCard } from "/@components";
-  import type { BookItem, Result } from "/@repositories/book";
   import RepositoryFactory, { BOOK } from "/@repositories/RepositoryFactory";
+  import { books } from "/@store";
+
   const BookRepository = RepositoryFactory[BOOK];
 
   let q = "";
   let empty = false;
-  let books: BookItem[] = [];
   let promise: Promise<void>;
   let startIndex = 0;
   let totalItems = 0;
 
-  $: hasMore = totalItems > books.length;
+  $: hasMore = totalItems > $books.length;
 
   const handleSubmit = () => {
     if (!q.trim()) return;
@@ -21,13 +20,13 @@
   };
 
   const getBooks = async () => {
-    books = [];
+    books.reset();
     empty = false;
     startIndex = 0;
     const result = await BookRepository.get({ q });
     empty = result.totalItems === 0;
     totalItems = result.totalItems;
-    books = result.items;
+    books.add(result.items);
   };
 
   const handleLoadMore = () => {
@@ -38,11 +37,11 @@
   const getNextPage = async () => {
     const result = await BookRepository.get({ q, startIndex });
 
-    const bookIds = books.map((book) => book.id);
+    const bookIds = $books.map((book) => book.id);
     const filteredItems = result.items.filter((item) => {
       return !bookIds.includes(item.id);
     });
-    books = [...books, ...filteredItems];
+    books.add(filteredItems);
   };
 </script>
 
@@ -55,7 +54,7 @@
     <div>検索結果が見つかりませんでした。</div>
   {:else}
     <div class="grid grid-cols-1 gap-2 lg:grid-cols-2">
-      {#each books as book (book.id)}
+      {#each $books as book (book.id)}
         <BookCard {book} />
       {/each}
     </div>
