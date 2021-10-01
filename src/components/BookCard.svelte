@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { BookItem } from "/@repositories/book";
+  import { Link } from "svelte-routing";
   export let book: BookItem;
 
   $: src = book.volumeInfo.imageLinks
@@ -20,9 +21,11 @@
     class="border-r border-b border-l border-grey-light sm:border-l-0 sm:border-t sm:border-grey-light bg-white rounded-b sm:rounded-b-none sm:rounded-r p-4 flex flex-col justify-between leading-normal w-100 sm:w-9/12 lg:w-7/12"
   >
     <div class="my-4">
-      <div class="text-black font-bold text-xl mb-2">
-        {book.volumeInfo.title}
-      </div>
+      <Link to={`/books/${book.id}`}>
+        <div class="text-black font-bold text-xl mb-2">
+          {book.volumeInfo.title}
+        </div>
+      </Link>
       <p class="text-grey-darker text-sm break-words w-9/12 m-auto">
         {description}
       </p>
