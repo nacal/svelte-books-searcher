@@ -2,15 +2,14 @@
   import { Router, Route } from "svelte-routing";
   import Tailwind from "./Tailwind.svelte";
   import { Header } from "./components";
-  import { Home, SearchBooks, DetailsBook } from "./pages";
+  import { SearchBooks, DetailsBook } from "./pages";
 </script>
 
 <Tailwind />
 <Router>
   <Header />
   <main class="text-center py-8 m-16">
-    <Route path="" component={Home} />
-    <Route path="search-books" component={SearchBooks} />
+    <Route path="" component={SearchBooks} />
     <Route path="books/:id" component={DetailsBook} />
   </main>
 </Router>

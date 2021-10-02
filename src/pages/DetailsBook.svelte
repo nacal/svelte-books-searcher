@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Link } from "svelte-routing";
   import { Spinner, BookInfo } from "/@components";
   import type { Readable } from "svelte/store";
   import type { BookItem } from "/@repositories/book";
@@ -33,4 +34,7 @@
       {e.message}
     </span>
   {/await}
+  <div class="mt-4">
+    <Link to="/">Home</Link>
+  </div>
 </div>
